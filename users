@@ -1,0 +1,23 @@
+/* CREACION DE USUARIOS Y OTORGAR PERMISOS */
+
+CREATE USER 'enti'@'localhost' IDENTIFIED BY 'enti';
+
+GRANT all privileges ON *.* TO 'enti'@'localhost';
+
+CREATE USER 'consultas'@'localhost';
+
+GRANT select ON amongmeme.characters_items TO 'consultas'@'localhost';
+GRANT select ON amongmeme.items TO 'consultas'@'localhost';
+GRANT select ON amongmeme.items_types TO 'consultas'@'localhost';
+GRANT select ON amongmeme.characters_weapons TO 'consultas'@'localhost';
+GRANT select ON amongmeme.weapons TO 'consultas'@'localhost';
+GRANT select ON amongmeme.weapons_types TO 'consultas'@'localhost';
+GRANT select ON amongmeme.characters_armors TO 'consultas'@'localhost';
+GRANT select ON amongmeme.armors TO 'consultas'@'localhost';
+GRANT select ON amongmeme.armors_types TO 'consultas'@'localhost';
+GRANT select ON amongmeme.users TO 'consultas'@'localhost';
+GRANT select ON amongmeme.skills TO 'consultas'@'localhost';
+GRANT select ON amongmeme.stats TO 'consultas'@'localhost';
+GRANT select ON amongmeme.characters TO 'consultas'@'localhost';
+
+
