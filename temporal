@@ -1,0 +1,1 @@
+CREATE VIEW view_char_items AS select characters.id_character, characters.name, items.id_item, items.item from characters left join characters_items on characters.id_character=characters_items.id_character left join items on characters_items.id_item=items.id_item
