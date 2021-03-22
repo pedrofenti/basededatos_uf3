@@ -13,11 +13,21 @@ echo "Que quieres hacer?"
 echo "------------------"
 echo "1. Mostrar Personajes"
 echo "2. Insertar Personaje"
-echo "3. Mostrar Items"
-echo "4. Insertar Item"
-echo "5. Salir"
+echo "3. Eliminar Personaje"
+echo "4. Mostrar Items"
+echo "5. Insertar Item"
+echo "6. Eliminar Item"
+echo "7. Mostrar Inventario de un Personaje"
+echo "8. Dar Item a un Personaje"
+echo "Q. Salir"
+echo " "
 
 read RESPUESTA
+
+if [ "$RESPUESTA" == "Q" ] || [ "$RESPUESTA" == "q" ] || [ "$RESPUESTA" == "" ]; then
+	echo "Exit"
+	exit 0
+fi
 
 if [ "$RESPUESTA" == "1" ]; then
 	echo " "
@@ -28,42 +38,56 @@ elif [ "$RESPUESTA" == "2" ]; then
 	echo " "
 	echo "Insertar un nuevo personaje"
 	echo "==========================="
-	echo "NAME:"
+	echo -n "NAME: "
 	read NAME
-	echo "AGE:"
+	echo -n "AGE: "
 	read AGE
-	echo "HP:"
+	echo -n "HP: "
 	read HP
-	echo "GENDER:"
+	echo -n "GENDER: "
 	read GENDER
-	echo "STYLE:"
+	echo -n "STYLE: "
 	read STYLE
-	echo "MANA:"
+	echo -n "MANA: "
 	read MANA
-	echo "CLASS:"
+	echo -n "CLASS: "
 	read CLASS
-	echo "RACE:"
+	echo -n "RACE: "
 	read RACE
-	echo "XP:"
+	echo -n "XP: "
 	read XP
-	echo "LEVEL:"
+	echo -n "LEVEL: "
 	read LEVEL
-	echo "HEIGHT:"
+	echo -n "HEIGHT: "
 	read HEIGHT
 	
-	echo "insert into characters ('name', 'age', 'hp', 'gender', 'style', 'mana', 'class', 'race', 'xp', 'level', 'height') values ( 
-
-
+	echo "INSERT INTO characters ('name', 'age', 'hp', 'gender', 'style', 'mana', 'class', 'race', 'xp', 'level', 'height') VALUES ( '$NAME', '$AGE', '$HP', '$GENDER', '$STYLE', '$MANA', '$CLASS', '$RACE', '$XP', '$LEVEL', '$HEIGHT' )" | $MYSQL
 
 
 elif [ "$RESPUESTA" == "3" ]; then
+	echo " "
+	echo "Que Personaje quieres eliminar?"
+	read INPUT
+	
+	if [`echo -n "$INPUT" | wc -m` -lt 4 ]; then
+		echo "Error: El largo debe ser mayor o igual a 4 caracteres"
+		exit 1
+	else
+		echo "DELETE FROM characters WHERE name LIKE '%$INPUT%'" | $MYSQL
+	fi
+
+
+elif [ "$RESPUESTA" == "4" ]; then
 	echo " "
 	echo "Items:"
 	echo "select id_item, item from items" | $MYSQL
 
 
-elif [ "$RESPUESTA" == "4" ]; then
+elif [ "$RESPUESTA" == "5" ]; then
 	echo " "
+
+elif [ "$RESPUESTA" == "6" ]; then
+	echo ""
 
 else
 	echo "Respuesta incorrecta"
