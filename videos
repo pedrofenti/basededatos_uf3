@@ -1,0 +1,19 @@
+DROP TABLE IF EXISTS videos;
+
+DROP PROCEDURE IF EXISTS plusOne;
+
+CREATE TABLE videos ( 
+	id_video INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+	video VARCHAR(24) NOT NULL, 
+	views INT DEFAULT 0 
+	);
+
+INSERT INTO videos (video) VALUES ("mi primer video");
+
+DELIMITER //
+CREATE PROCEDURE plusOne ()
+BEGIN 
+UPDATE videos SET views=views+1 WHERE video="mi primer video";
+END // 
+DELIMITER ;
+
